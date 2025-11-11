@@ -444,8 +444,9 @@
             const modal = originalModal.cloneNode(true);
             
             // Populate modal content based on type using template-based approach
+            // Skip template population for notification modal as it uses static HTML
             const contentDiv = modal.querySelector(`#${modalId.replace('Modal', '')}-modal-content`);
-            if (contentDiv) {
+            if (contentDiv && modalId !== 'notificationModal') {
                 populateModalFromTemplate(contentDiv, data, type);
             }
 
@@ -2406,7 +2407,7 @@
                             openModal('forwardModal');
                             break;
                         case 'notification':
-                            alert('Notification action clicked - This would configure notification settings for this message.');
+                            openModal('notificationModal');
                             break;
                         case 'archive':
                             // Get message data from the button's context
@@ -2450,7 +2451,7 @@
                             openModal('forwardModal');
                             break;
                         case 'notification':
-                            alert('Notification action clicked - This would configure notification settings for this message.');
+                            openModal('notificationModal');
                             break;
                         case 'archive':
                             // Get message data from the button's context
