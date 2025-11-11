@@ -2906,3 +2906,23 @@
             // Show success message
             alert('Message has been recalled successfully.');
         }
+        
+        // Function to create notification email
+        function createNotificationEmail() {
+            const subject = document.getElementById('notification-email-subject').value;
+            const body = document.getElementById('notification-email-body').value;
+            
+            if (!subject.trim() || !body.trim()) {
+                alert('Please fill in both email subject and body.');
+                return;
+            }
+            
+            // Log the notification creation (demo purposes)
+            console.log('Creating notification email:', { subject, body });
+            
+            // Close the notification modal
+            closeModal('notificationModal');
+            
+            // Show success message
+            alert('Notification email has been created successfully.');
+        }
