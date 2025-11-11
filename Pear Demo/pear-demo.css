@@ -1187,10 +1187,6 @@ label {
     font-family: inherit; /* Override browser default monospace font */
 }
 
-/* Form container styling */
-.ptn-form-container {
-    margin: 1rem 0;
-}
 
 .ptn-form-row {
     display: flex;
@@ -3000,11 +2996,12 @@ label {
         }
 
         /* Show tooltip */
+
+        .ptn-forward-modal {
+            max-width: 800px;
+        }
         /* Forward Modal Header with Action Buttons */
         .ptn-modal-header-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding-bottom: 1.5rem;
             border-bottom: 2px solid var(--border-light);
             margin-bottom: 1.5rem;
@@ -3012,7 +3009,6 @@ label {
 
         .ptn-modal-action-buttons {
             display: flex;
-            gap: 0.75rem;
             flex-wrap: wrap;
         }
 

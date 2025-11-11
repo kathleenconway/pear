@@ -284,13 +284,13 @@
                     <div class="ptn-tab-header">Archive</div>
                 </li>
                 <li role="presentation">
-                    <button class="ptn-vtab" role="tab" aria-selected="false" aria-controls="ptn-panel-5" id="ptn-tab-5"
+                    <button class="ptn-vtab ptn-vtab-archive" role="tab" aria-selected="false" aria-controls="ptn-panel-5" id="ptn-tab-5"
                         tabindex="-1">
                         Inbox Archive
                     </button>
                 </li>
                 <li role="presentation">
-                    <button class="ptn-vtab" role="tab" aria-selected="false" aria-controls="ptn-panel-6" id="ptn-tab-6"
+                    <button class="ptn-vtab ptn-vtab-archive" role="tab" aria-selected="false" aria-controls="ptn-panel-6" id="ptn-tab-6"
                         tabindex="-1">
                         Sent Archive
                     </button>
@@ -627,7 +627,7 @@ Example:  !AITS Pear Feedback!
                         </div>
                         </div>
                         <div>
-                         <button class="ptn-button" id="archive-selected-btn-inbox" disabled>
+                         <button class="ptn-button" id="archive-selected-btn-inbox" disabled onclick="showArchiveModal()">
                             <svg width="16" height="16" viewBox="0 0 25 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <g clip-path="url(#clip0_381_281)">
                                     <path d="M3.5 21.9664H21.5V6.01244H3.5V21.9664ZM23.5 22.9664L23.4951 23.069C23.4472 23.5393 23.0729 23.9137 22.6025 23.9615L22.5 23.9664H2.5L2.39746 23.9615C1.92707 23.9137 1.55283 23.5393 1.50488 23.069L1.5 22.9664V5.01245C1.5 4.46016 1.94772 4.01245 2.5 4.01245H22.5L22.6025 4.01733C23.1067 4.06867 23.5 4.49477 23.5 5.01245V22.9664Z"/>
@@ -856,7 +856,7 @@ Example:  !AITS Pear Feedback!
                                     </svg>
                                     Archive
                                 </button>
-                                <button type="button" class="ptn-button">
+                                <button type="button" class="ptn-button" onclick="openModal('recallConfirmModal')">
                                     <svg width="16" height="16" viewBox="0 0 19 20" fill="currentColor" aria-hidden="true">
                                         <g clip-path="url(#clip0_381_299)">
                                             <path d="M10.4476 18.9897C9.97897 19.4583 9.21896 19.4583 8.75033 18.9897L0.468109 10.7066C0.0776209 10.3161 0.0776369 9.68292 0.468146 9.29241L8.75034 1.01022C9.21897 0.541594 9.97897 0.541594 10.4476 1.01022C10.9162 1.47885 10.9162 2.23886 10.4476 2.70749L3.15463 10.0005L10.4476 17.2924C10.9162 17.7611 10.9162 18.5211 10.4476 18.9897Z"/>
@@ -924,7 +924,7 @@ Example:  !AITS Pear Feedback!
                         </div>
                         </div>
                         <div>
-                         <button class="ptn-button" id="recall-selected-btn-sent" disabled>
+                         <button class="ptn-button" id="recall-selected-btn-sent" disabled onclick="openModal('recallConfirmModal')">
                             <svg width="16" height="16" viewBox="0 0 19 20" fill="currentColor" aria-hidden="true">
                                 <g clip-path="url(#clip0_381_299)">
                                     <path d="M10.4476 18.9897C9.97897 19.4583 9.21896 19.4583 8.75033 18.9897L0.468109 10.7066C0.0776209 10.3161 0.0776369 9.68292 0.468146 9.29241L8.75034 1.01022C9.21897 0.541594 9.97897 0.541594 10.4476 1.01022C10.9162 1.47885 10.9162 2.23886 10.4476 2.70749L3.15463 10.0005L10.4476 17.2924C10.9162 17.7611 10.9162 18.5211 10.4476 18.9897Z" fill="currentColor"/>
@@ -938,7 +938,7 @@ Example:  !AITS Pear Feedback!
                             </svg>
                             Recall Selected
                         </button>
-                         <button class="ptn-button" id="archive-selected-btn-sent" disabled>
+                         <button class="ptn-button" id="archive-selected-btn-sent" disabled onclick="showArchiveModal()">
                             <svg width="16" height="16" viewBox="0 0 25 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <g clip-path="url(#clip0_381_281)">
                                     <path d="M3.5 21.9664H21.5V6.01244H3.5V21.9664ZM23.5 22.9664L23.4951 23.069C23.4472 23.5393 23.0729 23.9137 22.6025 23.9615L22.5 23.9664H2.5L2.39746 23.9615C1.92707 23.9137 1.55283 23.5393 1.50488 23.069L1.5 22.9664V5.01245C1.5 4.46016 1.94772 4.01245 2.5 4.01245H22.5L22.6025 4.01733C23.1067 4.06867 23.5 4.49477 23.5 5.01245V22.9664Z"/>
@@ -1167,7 +1167,7 @@ Example:  !AITS Pear Feedback!
                                     </svg>
                                     Archive
                                 </button>
-                                <button type="button" class="ptn-button">
+                                <button type="button" class="ptn-button" onclick="openModal('recallConfirmModal')">
                                     <svg width="16" height="16" viewBox="0 0 19 20" fill="currentColor" aria-hidden="true">
                                         <g clip-path="url(#clip0_381_299)">
                                             <path d="M10.4476 18.9897C9.97897 19.4583 9.21896 19.4583 8.75033 18.9897L0.468109 10.7066C0.0776209 10.3161 0.0776369 9.68292 0.468146 9.29241L8.75034 1.01022C9.21897 0.541594 9.97897 0.541594 10.4476 1.01022C10.9162 1.47885 10.9162 2.23886 10.4476 2.70749L3.15463 10.0005L10.4476 17.2924C10.9162 17.7611 10.9162 18.5211 10.4476 18.9897Z"/>
@@ -1911,6 +1911,214 @@ Example:  !AITS Pear Feedback!
         </div>
                 </div>
 
+                <!-- Sent Archive Panel -->
+                <div class="ptn-vtabpanel ptn-no-horizontal-padding" role="tabpanel" id="ptn-panel-6" aria-labelledby="ptn-tab-6" tabindex="-1">
+
+                    <div class="ptn-table-controls">
+
+                        <div>
+                        <h3>Sent Archive</h3>
+                        
+                        <div class="table-info" role="status" aria-live="polite">
+                            <span id="results-info-sent-archive">Showing messages</span>
+                        </div>
+                        </div>
+                        <div>
+                         <button class="ptn-button" id="restore-selected-btn-sent-archive" disabled>
+                            <svg width="16" height="16" viewBox="0 0 25 24" fill="currentColor" aria-hidden="true">
+                                <g clip-path="url(#clip0_381_286)">
+                                    <path d="M3.5 21.9664H21.5V6.01244H3.5V21.9664ZM23.5 22.9664L23.4951 23.069C23.4472 23.5393 23.0729 23.9137 22.6025 23.9615L22.5 23.9664H2.5L2.39746 23.9615C1.92707 23.9137 1.55283 23.5393 1.50488 23.069L1.5 22.9664V5.01245C1.5 4.46016 1.94772 4.01245 2.5 4.01245H22.5L22.6025 4.01733C23.1067 4.06867 23.5 4.49477 23.5 5.01245V22.9664Z"/>
+                                    <path d="M2.1084 3.92908H22.8916V2.03357H2.1084V3.92908ZM24.8916 4.92908L24.8857 5.03064C24.838 5.50148 24.464 5.87559 23.9932 5.92322L23.8916 5.92908H1.1084L1.00586 5.92322C0.501754 5.87186 0.108398 5.44576 0.108398 4.9281V1.03357C0.108398 0.515893 0.50173 0.0897838 1.00586 0.0384521L1.1084 0.0335693H23.8916L23.9932 0.0384521C24.4976 0.0894494 24.8916 0.515645 24.8916 1.03357V4.92908Z"/>
+                                    <path d="M12.4908 19.5988C11.9385 19.5988 11.4908 19.151 11.4908 18.5988L11.4908 11.8048L8.96446 14.3302C8.57402 14.7206 7.94093 14.7205 7.5504 14.3302C7.15986 13.9398 7.15921 13.3068 7.54942 12.9161L11.7926 8.67297C12.1831 8.28251 12.8161 8.28259 13.2067 8.67297L17.4498 12.9161C17.8403 13.3066 17.8403 13.9397 17.4498 14.3302C17.0593 14.7206 16.4262 14.7207 16.0358 14.3302L13.4908 11.7853L13.4908 18.5988C13.4908 19.1509 13.0429 19.5985 12.4908 19.5988Z"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_381_286">
+                                        <rect width="25" height="24" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            Restore Selected
+                        </button>               
+                        </div>
+                    </div>
+
+                    <div class="ptn-table-container" id="ptn-table-container-sent-archive">
+                        <div class="mobile-table-header">
+                            <input type="checkbox" id="select-all-mobile-sent-archive" aria-label="Select all rows">
+                            <div class="mobile-header-text">
+                                <span class="mobile-sort-label">Sort by:</span>
+                                <select class="mobile-sort-select" aria-label="Sort messages by">
+                                    <option value="date">Date</option>
+                                    <option value="from">From</option>
+                                    <option value="subject">Subject</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <table class="ptn-table" id="ptn-table-sent-archive" aria-label="Sent Archive Messages">
+                                <thead>
+                                    <tr role="row">
+                                            <th scope="col" class="checkbox-col">
+                                                <label class="custom-checkbox">
+                                                    <input type="checkbox" id="select-all-sent-archive" aria-label="Select all rows">
+                                                    <svg width="16" height="16" viewBox="-4 -4 39 39" aria-hidden="true" focusable="false">
+                                                        <rect class="checkbox__background" width="35" height="35" x="-2" y="-2"
+                                                            stroke="currentColor" fill="none" stroke-width="3" rx="6" ry="6"></rect>
+                                                        <polyline class="checkbox__checkmark" points="4,14 12,23 28,5" stroke="transparent"
+                                                            stroke-width="4" fill="none"></polyline>
+                                                    </svg>
+                                                </label>
+                                            </th>
+                                    <th scope="col">To</th>
+                                    <th scope="col">Date Archived</th>
+                                    <th scope="col">Subject</th>
+                                    <th scope="col">Attachments</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ptn-table-body-sent-archive">
+                                    <tr>
+                                        <td class="checkbox-cell">
+                                            <label class="custom-checkbox">
+                                                <input type="checkbox" name="row-select-sent-archive" value="1" aria-label="Select message Q3 Project Summary - Archived">
+                                                <svg width="16" height="16" viewBox="-4 -4 39 39" aria-hidden="true" focusable="false">
+                                                    <rect class="checkbox__background" width="35" height="35" x="-2" y="-2"
+                                                        stroke="currentColor" fill="none" stroke-width="3" rx="6" ry="6"></rect>
+                                                    <polyline class="checkbox__checkmark" points="4,14 12,23 28,5" stroke="transparent"
+                                                        stroke-width="4" fill="none"></polyline>
+                                                </svg>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <button class="ptn-link-button" onclick="showContactModal('Dr. Sarah Anderson', 'sanderson@uillinois.edu, sarah.anderson@illinois.edu')" aria-label="View contact details for Dr. Sarah Anderson">Dr. Sarah Anderson (sanderson)</button>
+                                        </td>
+                                        <td>Archived: Thu 08/15/2025 4:45 PM</td>
+                                        <td>
+                                            <button class="ptn-link-button" onclick="showMessageModal('Q3 Project Summary - Archived', 'sentArchive')" aria-label="View message Q3 Project Summary - Archived">Q3 Project Summary - Archived</button>
+                                        </td>
+                                        <td>
+                                            <button class="ptn-link-button" onclick="showAttachmentModal('Q3 Project Summary - Archived')" aria-label="View 3 attachments for Q3 Project Summary - Archived">3 files</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        <nav aria-label="Sent Archive Pagination" class="ptn-pagination">
+                            <button class="pagination-button pagination-prev" disabled aria-label="Go to previous page">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <polyline points="15,18 9,12 15,6"></polyline>
+                                </svg>
+                                Previous
+                            </button>
+                            <button class="pagination-button pagination-page current" aria-label="Current page, page 1" aria-current="page">1</button>
+                            <button class="pagination-button pagination-next" disabled aria-label="Go to next page">
+                                Next
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <polyline points="9,18 15,12 9,6"></polyline>
+                                </svg>
+                            </button>
+                        </nav>
+                    </div>
+
+                    <div id="table-announcements-sent-archive" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+                    <!-- Message Detail View for Sent Archive -->
+                    <div class="ptn-message-detail-view">
+                        <div class="ptn-message-detail-header">
+                            <button class="ptn-button ptn-button-primary ptn-button-icon" onclick="showTableView('ptn-panel-6')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <polyline points="15,18 9,12 15,6"></polyline>
+                                </svg>
+                            </button>
+                            <h3>Message Details</h3>
+                            <div class="ptn-message-detail-actions">
+                                <button type="button" class="ptn-button">
+                                    <svg width="16" height="16" viewBox="0 0 25 24" fill="currentColor" aria-hidden="true">
+                                        <g clip-path="url(#clip0_381_286)">
+                                            <path d="M3.5 21.9664H21.5V6.01244H3.5V21.9664ZM23.5 22.9664L23.4951 23.069C23.4472 23.5393 23.0729 23.9137 22.6025 23.9615L22.5 23.9664H2.5L2.39746 23.9615C1.92707 23.9137 1.55283 23.5393 1.50488 23.069L1.5 22.9664V5.01245C1.5 4.46016 1.94772 4.01245 2.5 4.01245H22.5L22.6025 4.01733C23.1067 4.06867 23.5 4.49477 23.5 5.01245V22.9664Z"/>
+                                            <path d="M2.1084 3.92908H22.8916V2.03357H2.1084V3.92908ZM24.8916 4.92908L24.8857 5.03064C24.838 5.50148 24.464 5.87559 23.9932 5.92322L23.8916 5.92908H1.1084L1.00586 5.92322C0.501754 5.87186 0.108398 5.44576 0.108398 4.9281V1.03357C0.108398 0.515893 0.50173 0.0897838 1.00586 0.0384521L1.1084 0.0335693H23.8916L23.9932 0.0384521C24.4976 0.0894494 24.8916 0.515645 24.8916 1.03357V4.92908Z"/>
+                                            <path d="M12.4908 19.5988C11.9385 19.5988 11.4908 19.151 11.4908 18.5988L11.4908 11.8048L8.96446 14.3302C8.57402 14.7206 7.94093 14.7205 7.5504 14.3302C7.15986 13.9398 7.15921 13.3068 7.54942 12.9161L11.7926 8.67297C12.1831 8.28251 12.8161 8.28259 13.2067 8.67297L17.4498 12.9161C17.8403 13.3066 17.8403 13.9397 17.4498 14.3302C17.0593 14.7206 16.4262 14.7207 16.0358 14.3302L13.4908 11.7853L13.4908 18.5988C13.4908 19.1509 13.0429 19.5985 12.4908 19.5988Z"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_381_286">
+                                                <rect width="25" height="24" fill="white"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    Restore to Sent
+                                </button>
+                                <button type="button" class="ptn-button">
+                                    <svg width="16" height="16" viewBox="0 0 28 22" fill="currentColor" aria-hidden="true">
+                                        <g clip-path="url(#clip0_381_296)">
+                                            <path d="M14.8037 1.19255C15.1942 0.802031 15.8273 0.802026 16.2178 1.19255L21.7323 6.70707C22.1228 7.09761 22.1228 7.73082 21.7322 8.12133L16.2178 13.6349C15.8273 14.0254 15.1942 14.0254 14.8037 13.6349C14.4132 13.2444 14.4132 12.6114 14.8037 12.2209L18.4805 8.54216H2.73633V20.1007L2.73145 20.2023C2.68046 20.7066 2.25403 21.1005 1.73633 21.1007C1.21841 21.1007 0.792212 20.7068 0.741211 20.2023L0.735352 20.1007V7.54216C0.735352 6.98987 1.18307 6.54216 1.73535 6.54216H18.7383L14.8037 2.60661C14.4132 2.21609 14.4132 1.58307 14.8037 1.19255Z"/>
+                                            <path d="M20.0684 1.19255C20.4589 0.802031 21.0919 0.802026 21.4824 1.19255L26.9969 6.70707C27.3875 7.09761 27.3875 7.73082 26.9969 8.12133L21.4824 13.6349C21.0919 14.0254 20.4589 14.0254 20.0684 13.6349C19.6778 13.2444 19.6778 12.6114 20.0684 12.2209L24.874 7.41325L20.0684 2.60661C19.6778 2.21609 19.6778 1.58307 20.0684 1.19255Z"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_381_296">
+                                                <rect width="28" height="22" fill="white"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    Forward
+                                </button>
+                                <button type="button" class="ptn-button">
+                                    <svg width="16" height="16" viewBox="0 0 21 28" fill="currentColor" aria-hidden="true">
+                                        <g clip-path="url(#clip0_381_303)">
+                                            <path d="M3.64404 25.0125H17.644V9.01245H3.64404V25.0125ZM19.644 26.0125L19.6392 26.115C19.5913 26.5854 19.217 26.9597 18.7466 27.0076L18.644 27.0125H2.64404C2.12637 27.0125 1.70026 26.6191 1.64893 26.115L1.64404 26.0125V8.01245C1.64404 7.46017 2.09176 7.01245 2.64404 7.01245H18.644L18.7466 7.01733C19.2507 7.06867 19.644 7.49477 19.644 8.01245V26.0125Z"/>
+                                            <path d="M2.64404 7.08655H18.644V5.19104H2.64404V7.08655ZM20.644 8.08655L20.6392 8.18811C20.5915 8.65875 20.2171 9.03275 19.7466 9.08069L19.644 9.08655H1.64404L1.5415 9.08069C1.0374 9.02933 0.644043 8.60323 0.644043 8.08557V4.19104C0.644043 3.63876 1.09176 3.19104 1.64404 3.19104H19.644L19.7466 3.19592C20.2507 3.24725 20.644 3.67336 20.644 4.19104V8.08655Z"/>
+                                            <path d="M8.64404 3.15564H12.644V2.15564H8.64404V3.15564ZM14.644 4.15564C14.644 4.70792 14.1963 5.15564 13.644 5.15564H7.64404C7.12637 5.15564 6.70026 4.76231 6.64893 4.25818L6.64404 4.15564V1.15564C6.64404 0.603355 7.09176 0.15564 7.64404 0.15564H13.644C14.1963 0.15564 14.644 0.603355 14.644 1.15564V4.15564Z"/>
+                                            <path d="M7.80542 22.0125C7.80542 22.5647 7.3577 23.0125 6.80542 23.0125C6.25313 23.0125 5.80542 22.5647 5.80542 22.0125L5.80542 12.0125C5.80542 11.4602 6.25314 11.0125 6.80542 11.0125C7.3577 11.0125 7.80542 11.4602 7.80542 12.0125L7.80542 22.0125Z"/>
+                                            <path d="M11.6477 22.0125C11.6477 22.5647 11.2 23.0125 10.6477 23.0125C10.0954 23.0125 9.6477 22.5647 9.6477 22.0125L9.64771 12.0125C9.64771 11.4602 10.0954 11.0125 10.6477 11.0125C11.2 11.0125 11.6477 11.4602 11.6477 12.0125L11.6477 22.0125Z"/>
+                                            <path d="M15.4897 22.0125C15.4897 22.5647 15.042 23.0125 14.4897 23.0125C13.9375 23.0125 13.4897 22.5647 13.4897 22.0125L13.4897 12.0125C13.4897 11.4602 13.9375 11.0125 14.4897 11.0125C15.042 11.0125 15.4897 11.4602 15.4897 12.0125L15.4897 22.0125Z"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_381_303">
+                                                <rect width="21" height="28" fill="white"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    Permanently Delete
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ptn-message-detail-content">
+                            <div class="ptn-message-detail-field">
+                                <div class="ptn-message-detail-label">Status</div>
+                                <div class="ptn-message-detail-value" data-field="status"></div>
+                            </div>
+                            <div class="ptn-message-detail-field">
+                                <div class="ptn-message-detail-label">Date Sent</div>
+                                <div class="ptn-message-detail-value" data-field="dateSent"></div>
+                            </div>
+                            <div class="ptn-message-detail-field">
+                                <div class="ptn-message-detail-label">From</div>
+                                <div class="ptn-message-detail-value" data-field="from"></div>
+                            </div>
+                            <div class="ptn-message-detail-field">
+                                <div class="ptn-message-detail-label">To</div>
+                                <div class="ptn-message-detail-value" data-field="to"></div>
+                            </div>
+                            <div class="ptn-message-detail-field">
+                                <div class="ptn-message-detail-label">Subject</div>
+                                <div class="ptn-message-detail-value" data-field="subject"></div>
+                            </div>
+                            <div class="ptn-message-detail-field">
+                                <div class="ptn-message-detail-label">Body</div>
+                                <div class="ptn-message-detail-value">
+                                    <div class="ptn-message-detail-body" data-field="body"></div>
+                                </div>
+                            </div>
+                            <div class="ptn-message-detail-field">
+                                <div class="ptn-message-detail-label">Attachments</div>
+                                <div class="ptn-message-detail-value" data-field="attachments"></div>
+                            </div>
+                            <div class="ptn-message-detail-field">
+                                <div class="ptn-message-detail-label">Expiration</div>
+                                <div class="ptn-message-detail-value" data-field="expiration"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             <div class="ptn-tabpanel" role="tabpanel" id="nav-panel-2" aria-labelledby="nav-tab-2" tabindex="-1">
                 <div class="ptn-page-container">
                     <h2>PEAR Help</h2>
@@ -2199,7 +2407,127 @@ Example:  !AITS Pear Feedback!
             <path id="pear" d="M33.1523 2.88687C38.4704 -0.878139 45.753 0.0263658 47.3242 0.277493C47.4991 0.305443 47.6107 0.46268 47.5791 0.636868C47.2941 2.20145 45.7277 9.3715 40.4092 13.1369C35.3511 16.7179 28.5157 16.0747 26.5078 15.7873C26.5214 16.2738 26.5168 16.7491 26.4951 17.213C34.5294 18.4174 40.6904 25.3481 40.6904 33.7179C40.6904 37.1193 41.5544 40.6389 43.5332 43.4054C46.3449 47.3362 48 52.1513 48 57.3527C47.9999 70.6075 37.2548 81.3527 24 81.3527C10.7452 81.3526 8.47976e-05 70.6074 0 57.3527C0 52.1513 1.65517 47.3362 4.4668 43.4054C6.44554 40.6389 7.30956 37.1193 7.30957 33.7179C7.30964 25.3542 13.4616 18.4268 21.4873 17.215C21.5211 16.6877 21.5268 16.1394 21.4971 15.5705C21.3058 11.9148 20.1203 9.24029 19.0137 7.49527C18.4579 6.61898 17.9213 5.97512 17.5381 5.56363C17.3471 5.35856 17.1952 5.21263 17.1006 5.12515C17.0534 5.08148 17.0201 5.05223 17.0039 5.03824C16.9978 5.03297 16.9944 5.02949 16.9932 5.02847C16.9938 5.02898 16.9952 5.02984 16.9971 5.0314C16.9983 5.03244 17.0001 5.0338 17.002 5.03531C17.0028 5.03603 17.0039 5.03741 17.0049 5.03824H17.0059C15.9362 4.16799 15.7726 2.59577 16.6416 1.52456C17.5114 0.452597 19.0862 0.288578 20.1582 1.15835L20.1562 1.16031L20.1572 1.16128C20.1579 1.16051 20.1589 1.16055 20.1592 1.16031L20.1611 1.16128L20.1758 1.173C20.183 1.17894 20.1917 1.18652 20.2012 1.19449C20.2183 1.20886 20.2393 1.22726 20.2637 1.2482C20.2697 1.25356 20.2763 1.25837 20.2822 1.26382C20.3379 1.31213 20.41 1.37555 20.4951 1.45425C20.6743 1.61996 20.9145 1.85385 21.1963 2.1564C21.7596 2.76133 22.4938 3.64677 23.2363 4.81753C24.5538 6.89496 25.8946 9.86865 26.3555 13.7423C27.092 10.9602 28.9513 5.86118 33.1523 2.88687Z"/>
         </svg><span>Protected Email Attachment Application, Version 5.0-711-08-22-2024 10:56, Copyright &copy; 2003-2024, University of Illinois Board of Trustees</span>
     </div>
+    
+    <!-- Modal for Message Notification -->
+    <div id="notificationModal" class="ptn-modal-element" role="dialog" aria-modal="true" aria-labelledby="notification-modal-title" data-modal-size="800px">
+        <button class="ptn-modal-close" onclick="closeModal('notificationModal')" aria-label="Close modal">&times;</button>
+        <div class="ptn-modal-interior">
+            <h2 id="notification-modal-title">Message Notification</h2>
+            <div id="notification-modal-content">
+                <form class="ptn-notification-form">
+                    <div class="notification-header-info">
+                        <div class="notification-info-row">
+                            <strong>Date Sent:</strong> Tue 10/07/2025 09:32 PM
+                        </div>
+                        <div class="notification-info-row">
+                            <strong>From:</strong> 👤 Katie Conway (kfconway), UIUC Urbana / Champaign, AITS Admin
+                        </div>
+                        <div class="notification-info-row">
+                            <strong>To:</strong> 📧👤 Katie Conway (kfconway), UIUC Urbana / Champaign, AITS Admin
+                        </div>
+                    </div>
 
+                    <!-- Recipient Notification Preferences -->
+                    <div class="ptn-notification-preferences">
+                        <label for="notification-recipient-list">Message Recipient Preferences</label>
+                        <ul class="ptn-recipient-list" id="notification-recipient-list">
+                            
+                            <!-- Jane Smith Preferences -->
+                            <li data-recipient-id="1">
+                                <details class="ptn-recipient-preferences">
+                                    <summary>
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M6 4l4 4-4 4" stroke="var(--mainblue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        <div class="ptn-recipient-info">
+                                            <div class="ptn-recipient-name">Jane Smith</div>
+                                            <div class="ptn-recipient-status"><span class="ptn-recipient-email">Default</span>&nbsp;&middot;&nbsp;<span class="ptn-recipient-receipt">Receipt</span></div>
+                                        </div>
+                                    </summary>
+                                    <div class="ptn-disclosure-content">
+                                        <div class="ptn-preference-section">
+                                            <div class="ptn-radio-group" role="radiogroup" aria-labelledby="notification-email-jane-legend">
+                                                <label class="ptn-radio-option">
+                                                    <input type="radio" name="notification-email-jane" value="default" checked>
+                                                    <span class="ptn-radio-custom"></span>
+                                                    <span class="ptn-radio-label">Notification to default email addresses: kfconway@illinois.edu</span>
+                                                </label>
+                                                <label class="ptn-radio-option">
+                                                    <input type="radio" name="notification-email-jane" value="these">
+                                                    <span class="ptn-radio-custom"></span>
+                                                    <span class="ptn-radio-label">Notification to these emails addresses: kfconway@illinois.edu</span>
+                                                </label>
+                                                <label class="ptn-radio-option">
+                                                    <input type="radio" name="notification-email-jane" value="none">
+                                                    <span class="ptn-radio-custom"></span>
+                                                    <span class="ptn-radio-label">Do not send email notification to this recipient</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+
+                            <!-- Nora Martinez Preferences -->
+                            <li data-recipient-id="4">
+                                <details class="ptn-recipient-preferences">
+                                    <summary>
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                            <path d="M6 4l4 4-4 4" stroke="var(--mainblue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        <div class="ptn-recipient-info">
+                                            <div class="ptn-recipient-name">Nora Martinez</div>
+                                            <div class="ptn-recipient-status"><span class="ptn-recipient-email">Default</span>&nbsp;&middot;&nbsp;<span class="ptn-recipient-receipt">Receipt</span></div>
+                                        </div>
+                                    </summary>
+                                    <div class="ptn-disclosure-content">
+                                        <div class="ptn-preference-section">
+                                            <div class="ptn-radio-group">
+                                                <label class="ptn-radio-option">
+                                                    <input type="radio" name="notification-email-nora" value="default" checked>
+                                                    <span class="ptn-radio-custom"></span>
+                                                    <span class="ptn-radio-label">Notification to default email addresses: kfconway@illinois.edu</span>
+                                                </label>
+                                                <label class="ptn-radio-option">
+                                                    <input type="radio" name="notification-email-nora" value="these">
+                                                    <span class="ptn-radio-custom"></span>
+                                                    <span class="ptn-radio-label">Notification to these emails addresses: kfconway@illinois.edu</span>
+                                                </label>
+                                                <label class="ptn-radio-option">
+                                                    <input type="radio" name="notification-email-nora" value="none">
+                                                    <span class="ptn-radio-custom"></span>
+                                                    <span class="ptn-radio-label">Do not send email notification to this recipient</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </details>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Email Subject Field -->
+                    <div class="ptn-input-group">
+                        <label for="notification-email-subject"><strong>Email Subject:</strong></label>
+                        <input type="text" id="notification-email-subject" class="ptn-input" value="PEAR Notification" required>
+                    </div>
+                    
+                    <!-- Email Body Field -->
+                    <div class="ptn-input-group">
+                        <label for="notification-email-body"><strong>Email Body:</strong></label>
+                        <textarea id="notification-email-body" class="ptn-textarea" required>Please view the pear message that I've sent to you.</textarea>
+                    </div>
+
+                    <!-- Modal Actions -->
+                    <div class="ptn-modal-btnbar">
+                        <button class="ptn-button ptn-button--secondary" type="button" onclick="closeModal('notificationModal')">Cancel</button>
+                        <button class="ptn-button ptn-button-primary" type="button" onclick="createNotificationEmail()">Create Notification Email</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
     <!-- Modal for Contact Details -->
     <div id="contactModal" class="ptn-modal-element" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
         <button class="ptn-modal-close" onclick="closeModal('contactModal')" aria-label="Close modal">&times;</button>
@@ -2311,7 +2639,7 @@ Example:  !AITS Pear Feedback!
                             </svg>
                             Archive
                         </button>
-                        <button type="button" class="ptn-button">
+                        <button type="button" class="ptn-button" onclick="openModal('recallConfirmModal')">
                             <svg width="16" height="16" viewBox="0 0 19 20" fill="currentColor" aria-hidden="true">
                                 <g clip-path="url(#clip0_381_299)">
                                     <path d="M10.4476 18.9897C9.97897 19.4583 9.21896 19.4583 8.75033 18.9897L0.468109 10.7066C0.0776209 10.3161 0.0776369 9.68292 0.468146 9.29241L8.75034 1.01022C9.21897 0.541594 9.97897 0.541594 10.4476 1.01022C10.9162 1.47885 10.9162 2.23886 10.4476 2.70749L3.15463 10.0005L10.4476 17.2924C10.9162 17.7611 10.9162 18.5211 10.4476 18.9897Z"/>
@@ -2443,8 +2771,22 @@ Example:  !AITS Pear Feedback!
         </div>
     </div>
 
+    <!-- Modal for Recall Confirmation -->
+    <div id="recallConfirmModal" class="ptn-modal-element" role="dialog" aria-modal="true" aria-labelledby="recall-modal-title">
+        <button class="ptn-modal-close" onclick="closeModal('recallConfirmModal')" aria-label="Close modal">&times;</button>
+        <div class="ptn-modal-interior">
+            <h2 id="recall-modal-title">Recall Message</h2>
+            <div id="recall-modal-content">
+                <p>Are you sure you want to recall this message?</p>
+                <div class="ptn-modal-btnbar">
+                    <button class="ptn-button ptn-button--secondary" onclick="closeModal('recallConfirmModal')">Cancel</button>
+                    <button class="ptn-button ptn-button-primary" onclick="confirmRecallMessage()">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Modal for Forward Message (Edit Message) -->
-    <div id="forwardModal" class="ptn-modal-element" role="dialog" aria-modal="true" aria-labelledby="forward-modal-title" data-modal-size="1000px">
+    <div id="forwardModal" class="ptn-modal-element ptn-forward-modal" role="dialog" aria-modal="true" aria-labelledby="forward-modal-title" data-modal-size="1000px">
         <button class="ptn-modal-close" onclick="closeModal('forwardModal')" aria-label="Close modal">&times;</button>
         <div class="ptn-modal-interior">
             <!-- Fixed Header with Action Buttons -->
@@ -2487,7 +2829,87 @@ Example:  !AITS Pear Feedback!
 
             <!-- Forward Message Form Content -->
             <div id="forward-form-content">
-                <!-- Content will be dynamically populated from the Edit Message interface -->
+                <div class="ptn-form-container">
+                    <!-- From Field -->
+                    <div class="ptn-input-group">
+                        <label for="forward-message-from">From</label>
+                        <select id="forward-message-from" class="ptn-select" required>
+                            <option value="">Select sender...</option>
+                            <option value="katie-conway" selected>Katie Conway (kfconway@uillinois.edu)</option>
+                            <option value="lorem-ipsum">Lorem Ipsum (lorem@example.com)</option>
+                        </select>
+                    </div>
+
+                    <!-- To Field -->
+                    <div class="ptn-input-group">
+                        <label for="forward-message-to">To</label>
+                        <input type="text" id="forward-message-to" class="ptn-input" placeholder="Enter recipients..." required>
+                    </div>
+
+                    <!-- Subject Field -->
+                    <div class="ptn-input-group">
+                        <label for="forward-message-subject">Subject</label>
+                        <input type="text" id="forward-message-subject" class="ptn-input" placeholder="Fwd: [Original Subject]" required>
+                    </div>
+                    
+                    <!-- Body Field -->
+                    <div class="ptn-input-group">
+                        <label for="forward-message-body">Message Body</label>
+                        <textarea id="forward-message-body" class="ptn-textarea" placeholder="Add your message here..." required>
+
+---------- Forwarded message ----------
+From: [Original Sender]
+Date: [Original Date]
+Subject: [Original Subject]
+To: [Original Recipients]
+
+[Original message text goes here]</textarea>
+                    </div>
+                    
+                    <!-- Attachments Field -->
+                    <div class="ptn-input-group">
+                        <label for="forward-message-attachments">Attachments</label>
+                        <div class="ptn-file-upload-container">
+                            <input type="file" id="forward-message-attachments" class="ptn-file-input-hidden" multiple accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.gif">
+                            <button type="button" class="ptn-button ptn-file-upload-button" onclick="document.getElementById('forward-message-attachments').click()">
+                                <svg width="16" height="16" viewBox="0 0 25 24" fill="currentColor" aria-hidden="true">
+                                    <g clip-path="url(#clip0_381_291)">
+                                        <path d="M24.4199 21.1632C24.4199 22.3782 23.4348 23.3634 22.2197 23.3634H2.21973C1.0047 23.3634 0.0195312 22.3782 0.0195312 21.1632V14.6222C0.0195312 13.9595 0.556985 13.422 1.21973 13.422C1.88247 13.422 2.41992 13.9595 2.41992 14.6222V20.964H22.0195V14.6222C22.0195 13.9595 22.557 13.422 23.2197 13.422C23.8825 13.422 24.4199 13.9595 24.4199 14.6222V21.1632Z"/>
+                                        <path d="M20.1958 7.81201C20.6968 8.31303 20.6967 9.12586 20.1958 9.62693C19.6948 10.1278 18.8825 10.1278 18.3815 9.62693L13.5269 4.77171L13.5269 15.3392C13.5267 16.0476 12.9523 16.6222 12.2439 16.6222C11.5354 16.6222 10.961 16.0476 10.9609 15.3392L10.9609 4.72409L6.05803 9.62692C5.55702 10.1278 4.74477 10.1278 4.24374 9.62692C3.74274 9.12587 3.7427 8.31305 4.24374 7.81201L10.8053 1.25046C11.5863 0.469432 12.8526 0.469407 13.6337 1.2504L20.1958 7.81201Z"/>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_381_291">
+                                            <rect width="25" height="24" fill="white"/>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                Add Attachments
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Message Retention Options -->
+                    <div class="ptn-input-group">
+                        <h4 class="ptn-form-label ptn-radio-group-title" id="forward-message-retention-title">Message Retention</h4>
+                        <div class="ptn-radio-group" role="radiogroup" aria-labelledby="forward-message-retention-title">
+                            <label class="ptn-radio-option">
+                                <input type="radio" name="forward-message-retention" value="purge-days" id="forward-retention-purge">
+                                <div class="ptn-radio-custom"></div>
+                                <span class="ptn-radio-label">
+                                    Purge this message in 
+                                    <input type="number" id="forward-purge-days" class="ptn-input ptn-form-input short" min="1" max="365" value="30" style="display: inline; width: 80px; margin: 0 0.5rem;"> 
+                                    days
+                                </span>
+                            </label>
+                            
+                            <label class="ptn-radio-option">
+                                <input type="radio" name="forward-message-retention" value="keep-forever" id="forward-retention-keep" checked>
+                                <div class="ptn-radio-custom"></div>
+                                <span class="ptn-radio-label">Keep this message forever</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

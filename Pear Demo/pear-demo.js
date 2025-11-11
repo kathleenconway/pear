@@ -465,7 +465,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(0, 0, 0, 0.5);
+                background: rgba(0, , 0, 0.5);
                 z-index: 1000;
                 display: flex;
                 align-items: center;
@@ -587,6 +587,62 @@
                 // Optional: Refresh the table or move to archive tab
                 // You could add logic here to update the UI after archiving
             }
+        }
+
+        // Function to show archive confirmation modal
+        function showArchiveModal() {
+            // Check which messages are selected
+            const selectedMessages = getSelectedMessages();
+            
+            if (selectedMessages.length === 0) {
+                alert('Please select at least one message to archive.');
+                return;
+            }
+            
+            // Store the selected messages for confirmation
+            pendingArchiveData = {
+                messages: selectedMessages,
+                count: selectedMessages.length
+            };
+            
+            // Update modal content to show how many messages will be archived
+            const modal = document.getElementById('archiveConfirmModal');
+            const content = modal.querySelector('#archive-modal-content p');
+            if (content) {
+                if (selectedMessages.length === 1) {
+                    content.textContent = 'Are you sure you want to archive this message? It will still be accessible to the sender and all recipients.';
+                } else {
+                    content.textContent = `Are you sure you want to archive these ${selectedMessages.length} messages? They will still be accessible to the sender and all recipients.`;
+                }
+            }
+            
+            // Open the modal using the existing modal system
+            openModal('archiveConfirmModal', null, 'archive');
+        }
+
+        // Helper function to get selected messages
+        function getSelectedMessages() {
+            const selectedMessages = [];
+            const checkboxes = document.querySelectorAll('input[name="row-select"]:checked');
+            
+            checkboxes.forEach(checkbox => {
+                const row = checkbox.closest('tr');
+                if (row) {
+                    const fromButton = row.querySelector('[data-cell="From"] button, [data-cell="To"] button');
+                    const subjectButton = row.querySelector('[data-cell="Subject"] button');
+                    
+                    if (fromButton && subjectButton) {
+                        selectedMessages.push({
+                            from: fromButton.textContent.trim(),
+                            subject: subjectButton.textContent.trim(),
+                            row: row,
+                            checkbox: checkbox
+                        });
+                    }
+                }
+            });
+            
+            return selectedMessages;
         }
 
         // Focus trap functionality
@@ -1772,12 +1828,15 @@
                 const removeButtons = document.querySelectorAll('.ptn-file-item-remove');
                 removeButtons.forEach(button => {
                     button.addEventListener('click', function() {
-                        this.closest('.ptn-file-item').remove();
-                        
-                        // If no files left, hide the file list
-                        const remainingFiles = document.querySelectorAll('.ptn-file-item');
-                        if (remainingFiles.length === 0) {
-                            document.getElementById('attachment-file-list').style.display = 'none';
+                        const fileName = this.getAttribute('aria-label').replace('Remove ', '').replace(' from attachments', '');
+                        if (confirm(`Remove ${fileName}?`)) {
+                            this.closest('.ptn-file-item').remove();
+                            
+                            // If no files left, hide the file list
+                            const remainingFiles = document.querySelectorAll('.ptn-file-item');
+                            if (remainingFiles.length === 0) {
+                                document.getElementById('attachment-file-list').style.display = 'none';
+                            }
                         }
                     });
                 });
@@ -2324,13 +2383,27 @@
             document.addEventListener('click', (e) => {
                 // Handle modal action buttons
                 if (e.target.closest('.ptn-modal-btnbar .ptn-button')) {
-                    const button = e.target;
-                    const action = button.textContent.trim().toLowerCase();
+                    const button = e.target.closest('.ptn-button');
+                    const actionText = button.textContent.trim().toLowerCase();
+                    
+                    console.log('Button clicked, action detected:', `"${actionText}"`);
+                    
+                    // More robust action detection
+                    let action = actionText;
+                    if (actionText.includes('forward')) {
+                        action = 'forward';
+                    } else if (actionText.includes('notification')) {
+                        action = 'notification';
+                    } else if (actionText.includes('archive')) {
+                        action = 'archive';
+                    } else if (actionText.includes('recall')) {
+                        action = 'recall';
+                    }
                     
                     // Demo functionality - replace with actual implementations
                     switch (action) {
                         case 'forward':
-                            openForwardModal();
+                            openModal('forwardModal');
                             break;
                         case 'notification':
                             alert('Notification action clicked - This would configure notification settings for this message.');
@@ -2341,7 +2414,7 @@
                             showArchiveConfirmation(messageData);
                             break;
                         case 'recall':
-                            alert('Recall action clicked - This would attempt to recall the sent message.');
+                            openModal('recallConfirmModal');
                             break;
                         default:
                             alert(`Unknown action: ${action}`);
@@ -2350,13 +2423,31 @@
 
                 // Handle in-tab message detail action buttons
                 if (e.target.closest('.ptn-message-detail-actions .ptn-button')) {
-                    const button = e.target;
-                    const action = button.textContent.trim().toLowerCase();
+                    const button = e.target.closest('.ptn-button');
+                    const actionText = button.textContent.trim().toLowerCase();
+                    
+                    console.log('In-tab button clicked, action detected:', `"${actionText}"`);
+                    
+                    // More robust action detection
+                    let action = actionText;
+                    if (actionText.includes('forward')) {
+                        action = 'forward';
+                    } else if (actionText.includes('notification')) {
+                        action = 'notification';
+                    } else if (actionText.includes('archive')) {
+                        action = 'archive';
+                    } else if (actionText.includes('recall')) {
+                        action = 'recall';
+                    } else if (actionText.includes('edit draft')) {
+                        action = 'edit draft';
+                    } else if (actionText.includes('permanently delete')) {
+                        action = 'permanently delete';
+                    }
                     
                     // Demo functionality - replace with actual implementations
                     switch (action) {
                         case 'forward':
-                            openForwardModal();
+                            openModal('forwardModal');
                             break;
                         case 'notification':
                             alert('Notification action clicked - This would configure notification settings for this message.');
@@ -2367,7 +2458,7 @@
                             showArchiveConfirmation(messageData);
                             break;
                         case 'recall':
-                            alert('Recall action clicked - This would attempt to recall the sent message.');
+                            openModal('recallConfirmModal');
                             break;
                         case 'edit draft':
                             alert('Edit Draft action clicked - This would open the draft in compose mode.');
@@ -2693,22 +2784,14 @@
                 // Reset to original position first
                 this.container.setAttribute('data-position', this.originalPosition);
 
-                // Skip auto-positioning if this is a recipient field tooltip set to "right"
-                if (this.originalPosition === 'right' && this.container.closest('.ptn-input-group-with-tooltip')) {
-                    return; // Keep it on the right as requested
-                }
-
                 // Wait for position to update, then check again
                 requestAnimationFrame(() => {
                     const updatedRect = this.content.getBoundingClientRect();
 
-                    // Only adjust if there's significant overflow (more than 50px outside viewport)
-                    const significantOverflow = 50;
-
                     // Check horizontal overflow
-                    if (updatedRect.right > viewportWidth - padding + significantOverflow) {
+                    if (updatedRect.right > viewportWidth - padding) {
                         this.container.setAttribute('data-position', 'left');
-                    } else if (updatedRect.left < padding - significantOverflow) {
+                    } else if (updatedRect.left < padding) {
                         this.container.setAttribute('data-position', 'right');
                     }
 
@@ -2716,9 +2799,9 @@
                     requestAnimationFrame(() => {
                         const finalRect = this.content.getBoundingClientRect();
 
-                        if (finalRect.top < padding - significantOverflow) {
+                        if (finalRect.top < padding) {
                             this.container.setAttribute('data-position', 'bottom');
-                        } else if (finalRect.bottom > viewportHeight - padding + significantOverflow) {
+                        } else if (finalRect.bottom > viewportHeight - padding) {
                             this.container.setAttribute('data-position', 'top');
                         }
                     });
@@ -2754,26 +2837,8 @@
                 this.content.setAttribute('aria-hidden', 'false');
                 this.isVisible = true;
 
-                // Special handling for recipient field tooltips with fixed positioning
-                if (this.originalPosition === 'right' && this.container.closest('.ptn-input-group-with-tooltip')) {
-                    this.positionFixedTooltip();
-                } else {
-                    // Check and adjust position after showing for other tooltips
-                    requestAnimationFrame(() => this.adjustPosition());
-                }
-            }
-
-            positionFixedTooltip() {
-                const triggerRect = this.trigger.getBoundingClientRect();
-                const tooltipRect = this.content.getBoundingClientRect();
-                
-                // Position to the right of the trigger
-                const left = triggerRect.right + 10;
-                const top = triggerRect.top + (triggerRect.height / 2) - (tooltipRect.height / 2);
-                
-                this.content.style.left = left + 'px';
-                this.content.style.top = top + 'px';
-                this.content.style.transform = 'none';
+                // Check and adjust position after showing
+                requestAnimationFrame(() => this.adjustPosition());
             }
 
             hide() {
@@ -2812,75 +2877,32 @@
             });
         }
 
-        // Radio Button Keyboard Accessibility
-        function initRadioButtonAccessibility() {
-            // Get all radio button groups
-            const radioGroups = document.querySelectorAll('[role="radiogroup"]');
-            
-            radioGroups.forEach(group => {
-                const radios = Array.from(group.querySelectorAll('input[type="radio"]'));
-                
-                // Set initial tabindex values - only checked (or first) radio should be tabbable
-                radios.forEach((radio, index) => {
-                    if (radio.checked || (index === 0 && !radios.some(r => r.checked))) {
-                        radio.tabIndex = 0;
-                    } else {
-                        radio.tabIndex = -1;
-                    }
-                });
-                
-                // Add keyboard navigation
-                radios.forEach(radio => {
-                    radio.addEventListener('keydown', (e) => {
-                        let newIndex;
-                        const currentIndex = radios.indexOf(radio);
-                        
-                        switch(e.key) {
-                            case 'ArrowDown':
-                            case 'ArrowRight':
-                                e.preventDefault();
-                                newIndex = (currentIndex + 1) % radios.length;
-                                break;
-                            case 'ArrowUp':
-                            case 'ArrowLeft':
-                                e.preventDefault();
-                                newIndex = (currentIndex - 1 + radios.length) % radios.length;
-                                break;
-                            default:
-                                return; // Don't handle other keys
-                        }
-                        
-                        // Update selection and focus
-                        if (newIndex !== undefined) {
-                            radios[newIndex].checked = true;
-                            radios[newIndex].focus();
-                            
-                            // Update tabindex values
-                            radios.forEach((r, i) => {
-                                r.tabIndex = i === newIndex ? 0 : -1;
-                            });
-                            
-                            // Trigger change event for any listeners
-                            radios[newIndex].dispatchEvent(new Event('change', { bubbles: true }));
-                        }
-                    });
-                    
-                    // Update tabindex when radio is selected by click
-                    radio.addEventListener('change', () => {
-                        if (radio.checked) {
-                            radios.forEach(r => {
-                                r.tabIndex = r === radio ? 0 : -1;
-                            });
-                        }
-                    });
-                });
-            });
+// Forward Modal Functions (simple demo implementations)
+        function sendForwardMessage() {
+            alert('Forward message sent successfully!');
+            closeModal('forwardModal');
         }
 
-        // Initialize preferences form when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            initPreferencesForm();
-            syncViewingAsDropdowns();
-            initTooltips();
-            initRadioButtonAccessibility();
-        });
+        function saveForwardAsDraft() {
+            alert('Forward message saved as draft!');
+            closeModal('forwardModal');
+        }
+
+        function deleteForwardDraft() {
+            if (confirm('Are you sure you want to delete this draft? This action cannot be undone.')) {
+                alert('Draft deleted!');
+                closeModal('forwardModal');
+            }
+        }
+        
+        // Function to confirm recall action
+        function confirmRecallMessage() {
+            // Simple recall confirmation
+            console.log('Recalling message');
+            
+            // Close the recall modal
+            closeModal('recallConfirmModal');
+            
+            // Show success message
+            alert('Message has been recalled successfully.');
+        }
